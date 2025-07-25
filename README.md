@@ -1,3 +1,5 @@
+Forked - Vibe coded to make it work with updated Enterprise Gitlab, I only wanted branch name to appear in merge request view so removed everything else.
+
 # GitLab Merge Requests lists enhancer
 
 A browser extension that enhance all Merge Requests lists on any instance of Gitlab and GitLab.com.
