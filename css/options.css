@@ -5,14 +5,9 @@
 
 /* Dark theme styles override */
 @media (prefers-color-scheme: dark) {
-    body.is-firefox.lt-89 {
+    body.is-firefox {
         background-color: #202023;
         color: rgb(249, 249, 250);
-    }
-
-    body.is-firefox.ge-89 {
-        background-color: rgb(35, 34, 43);
-        color: rgb(251,251,254);
     }
 
     .is-firefox input[type="url"],
@@ -47,10 +42,6 @@ body.is-chrome {
 
 /************************************************************************
  * Global styles */
-
-html, body, button {
-    font-size: 15px;
-}
 
 .is-hidden {
     display: none;
