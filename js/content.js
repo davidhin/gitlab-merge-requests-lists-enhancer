@@ -682,55 +682,7 @@
           mergeRequest
         );
 
-        // -----------------------------------------------
-        // Jira ticket link (data attributes are set in setDataAttributesToNode, above)
-
-        if (
-          "jiraTicketId" in mergeRequestNode.dataset &&
-          "jiraTicketUrl" in mergeRequestNode.dataset
-        ) {
-          let jiraTicketLinkToolip = null;
-          let jiraTicketLinkLabel = null;
-
-          switch (this.preferences.jira_ticket_link_label_type) {
-            case "ticket_id":
-              jiraTicketLinkLabel = mergeRequestNode.dataset.jiraTicketId;
-
-              break;
-            case "icon":
-              jiraTicketLinkLabel = this.buildSpriteIcon("issues");
-              jiraTicketLinkToolip =
-                "Jira ticket " + mergeRequestNode.dataset.jiraTicketId;
-
-              break;
-            default:
-              console.error(
-                "Invalid link label type " +
-                  this.preferences.jira_ticket_link_label_type
-              );
-          }
-
-          if (jiraTicketLinkLabel) {
-            let jiraTicketLink =
-              '<a href="' +
-              mergeRequestNode.dataset.jiraTicketUrl +
-              '" ' +
-              'class="issuable-milestone ' +
-              (jiraTicketLinkToolip ? "has-tooltip" : "") +
-              '" ' +
-              (jiraTicketLinkToolip
-                ? 'title="' + jiraTicketLinkToolip + '"'
-                : "") +
-              ">" +
-              jiraTicketLinkLabel +
-              "</a> ";
-
-            this.parseHtmlAndInsertBefore(
-              mergeRequestNode.querySelector(".merge-request-title-text"),
-              jiraTicketLink
-            );
-          }
-        }
+        
 
         // -----------------------------------------------
         // Source branch info only
@@ -782,23 +734,7 @@
           );
         }
 
-        // -----------------------------------------------
-        // Unresolved discussions indicator
-
-        if (
-          this.preferences.enable_unresolved_discussions_indicator &&
-          !mergeRequest.blocking_discussions_resolved
-        ) {
-          let unresolvedDiscussionsIndicatorToInject =
-            '<li><span class="has-tooltip" title="Unresolved discussion(s) left">' +
-            this.buildSpriteIcon("comment-dots", "danger-title") +
-            "</span></li>";
-
-          this.parseHtmlAndPrepend(
-            mergeRequestNode.querySelector(".issuable-meta .controls"),
-            unresolvedDiscussionsIndicatorToInject
-          );
-        }
+        
       }, this);
     }
 
@@ -816,15 +752,7 @@
       mergeRequestNode.dataset.targetBranchName = mergeRequest.target_branch;
       mergeRequestNode.dataset.isWip = mergeRequest.work_in_progress;
 
-      if (this.preferences.enable_jira_ticket_link) {
-        let jiraTicketId = this.findFirstJiraTicketId(mergeRequest);
-
-        if (jiraTicketId) {
-          mergeRequestNode.dataset.jiraTicketId = jiraTicketId;
-          mergeRequestNode.dataset.jiraTicketUrl =
-            this.createJiraTicketUrl(jiraTicketId);
-        }
-      }
+      
     }
 
     /**
