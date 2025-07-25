@@ -1,0 +1,145 @@
+/************************************************************************
+ * Browser-specific styles */
+
+/* Firefox *************************************************************/
+
+/* Dark theme styles override */
+@media (prefers-color-scheme: dark) {
+    body.is-firefox {
+        background-color: #202023;
+        color: rgb(249, 249, 250);
+    }
+
+    .is-firefox input[type="url"],
+    .is-firefox textarea {
+        background-color: #2a2a2e;
+        color: #fff;
+        border-color: rgba(249, 249, 250, 0.2);
+        border-width: 1px;
+    }
+}
+
+/* Chrome **************************************************************/
+
+body.is-chrome {
+    width: 660px;
+}
+
+/* Dark theme styles override */
+@media (prefers-color-scheme: dark) {
+    body.is-chrome {
+        background-color: #292a2d;
+        color: rgb(232, 234, 237);
+    }
+
+    .is-chrome input[type="url"],
+    .is-chrome textarea {
+        background-color: #202023;
+        color: rgb(232, 234, 237);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/************************************************************************
+ * Global styles */
+
+.is-hidden {
+    display: none;
+}
+
+/************************************************************************
+ * Text styles */
+
+.txt-center {
+    text-align: center;
+}
+
+.monospaced {
+    font-family: monospace;
+}
+
+.txt-muted {
+    opacity: 0.8;
+}
+
+/************************************************************************
+ * Sizing styles */
+
+.w100 {
+    width: 100%;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.w40p {
+    width: 40px;
+}
+
+.w300p {
+    width: 300px;
+}
+
+/************************************************************************
+ * Layout styles */
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.row > .fluid {
+    flex-grow: 1;
+}
+
+/************************************************************************
+ * Margin and padding styles */
+
+.pas {
+    padding: 5px;
+}
+
+.pts {
+    padding-top: 5px;
+}
+
+.ptm {
+    padding-top: 10px;
+}
+
+.pbs {
+    padding-bottom: 5px;
+}
+
+.pbm {
+    padding-bottom: 10px;
+}
+
+.prm {
+    padding-right: 10px;
+}
+
+.pll {
+    padding-left: 40px;
+}
+
+.mlm {
+    margin-left: 10px;
+}
+
+.man {
+    margin: 0;
+}
+
+.mtn {
+    margin-top: 0;
+}
+
+.mbn {
+    margin-bottom: 0;
+}
+
+.mrn {
+    margin-right: 0;
+}
