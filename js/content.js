@@ -682,8 +682,6 @@
           mergeRequest
         );
 
-        
-
         // -----------------------------------------------
         // Source branch info only
 
@@ -693,11 +691,8 @@
             mergeRequest.iid
           );
 
-          let newInfoLineToInject = '<div class="issuable-info">';
-
-          // Source branch name only
-          newInfoLineToInject +=
-            '<span class="project-ref-path has-tooltip" title="Source branch">' +
+          let newInfoLineToInject =
+            ' (<span class="project-ref-path has-tooltip" title="Source branch" style="opacity: 0.6;">' +
             '<a class="ref-name" href="' +
             this.baseProjectUrl +
             "/-/commits/" +
@@ -705,26 +700,29 @@
             '">' +
             mergeRequest.source_branch +
             "</a>" +
-            "</span>";
-
-          newInfoLineToInject += "</div>";
+            "</span>)";
 
           console.log(
             "🔧 GitLab MR Enhancer: Branch HTML to inject:",
             newInfoLineToInject
           );
 
-          const targetElement = mergeRequestNode.querySelector(
-            ".issuable-main-info"
+          // Try to find the target branch element and insert source branch after it
+          const targetBranchElement = mergeRequestNode.querySelector(
+            ".issuable-info .project-ref-path"
           );
-          if (targetElement) {
+          if (targetBranchElement) {
             console.log(
-              "🔧 GitLab MR Enhancer: Found target element, injecting branch info"
+              "🔧 GitLab MR Enhancer: Found target branch element, inserting source branch after it"
             );
-            this.parseHtmlAndAppend(targetElement, newInfoLineToInject);
+            // Insert the source branch right after the target branch element
+            targetBranchElement.insertAdjacentHTML(
+              "afterend",
+              newInfoLineToInject
+            );
           } else {
             console.error(
-              "❌ GitLab MR Enhancer: Could not find .issuable-main-info element for MR",
+              "❌ GitLab MR Enhancer: Could not find target branch element for MR",
               mergeRequest.iid
             );
           }
@@ -733,8 +731,6 @@
             "🔧 GitLab MR Enhancer: Branch display is disabled in preferences"
           );
         }
-
-        
       }, this);
     }
 
@@ -751,8 +747,6 @@
       mergeRequestNode.dataset.sourceBranchName = mergeRequest.source_branch;
       mergeRequestNode.dataset.targetBranchName = mergeRequest.target_branch;
       mergeRequestNode.dataset.isWip = mergeRequest.work_in_progress;
-
-      
     }
 
     /**
